@@ -1,6 +1,19 @@
+version: "3"
+
 services:
   api:
-    image:datascientest/fastapi:1.0.0
+    image: datascientest/fastapi:1.0.0
+    networks:
+      mynetwork:
+        aliases:
+          - api
   auth:
-    image:auth:latest
-    command: -a 172.17.0.2 -p 8000 -s 200 -l alice --password wonderland
+    image: auth
+    command: -a api -p 8000 -s 200 -v 1 -l alice --password wonderland --sentence "life sucks"
+    networks:
+      mynetwork:
+        aliases:
+          - auth
+
+networks:
+  mynetwork:
