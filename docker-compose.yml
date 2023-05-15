@@ -2,18 +2,64 @@ version: "3"
 
 services:
   api:
-    image: datascientest/fastapi:1.0.0
+    container_name: exam_api
+    build:
+      context: ./api
+    image: exam_api
     networks:
       mynetwork:
         aliases:
           - api
+  perm:
+    container_name: exam_perm
+    build:
+      context: ./perm
+    environment:
+        - LOG=1
+    image: exam_perm
+    depends_on:
+      api:
+        condition: service_healthy
+    networks:
+      mynetwork:
+        aliases:
+          - perm
+    volumes:
+      - ./logs:/usr/src/app/logs
+
   auth:
-    image: auth
-    command: -a api -p 8000 -s 200 -v 1 -l alice --password wonderland --sentence "life sucks"
+    container_name: exam_auth
+    build:
+      context: ./auth
+    environment: 
+        - LOG=1
+    image: exam_auth
+    depends_on:
+      api:
+        condition: service_healthy
     networks:
       mynetwork:
         aliases:
           - auth
+    volumes:
+      - ./logs:/usr/src/app/logs
 
+  sentiment:
+    container_name: exam_sentiment
+    build:
+      context: ./sentiment
+    environment:
+        - LOG=1
+    image: exam_sentiment
+    depends_on:
+      api:
+        condition: service_healthy
+    networks:
+      mynetwork:
+        aliases:
+          - sentiment
+    volumes:
+      - ./logs:/usr/src/app/logs
 networks:
   mynetwork:
+

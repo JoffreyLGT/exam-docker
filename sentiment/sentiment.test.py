@@ -1,6 +1,6 @@
 import os
 import requests
-
+import datetime
 import argparse
 
 parser = argparse.ArgumentParser(
@@ -40,6 +40,7 @@ if str(status_code) == "200":
         test_status = 'SUCCESS'
 
 output = f'''
+{datetime.datetime.now()}
 ============================
          SENTIMENTS 
 ============================
@@ -58,6 +59,6 @@ actual result = {1 if response_body["score"] > 0 else 0}
 print(output)
 
 # impression dans un fichier
-if os.environ.get('LOG') == 1:
-    with open('api_test.log', 'a') as file:
+if os.environ.get('LOG') == "1":
+    with open('logs/api_test.log', 'a') as file:
         file.write(output)

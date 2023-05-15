@@ -1,6 +1,7 @@
 FROM python:latest
 WORKDIR /usr/src/app
-ENV LOG=1
+#ENV LOG=1
+COPY ./auth.sh .
 COPY ./auth.test.py . 
 RUN pip install --no-cache-dir requests
-ENTRYPOINT ["python", "auth.test.py"]
+ENTRYPOINT ["/bin/bash", "auth.sh"] 
