@@ -1,6 +1,6 @@
 import os
 import requests
-
+import datetime
 import argparse
 
 parser = argparse.ArgumentParser(
@@ -33,6 +33,7 @@ else:
     test_status = 'FAILURE'
 
 output = f'''
+{datetime.datetime.now()}
 ============================
           PERMISSION
 ============================
@@ -50,6 +51,6 @@ actual result = {status_code}
 print(output)
 
 # impression dans un fichier
-if os.environ.get('LOG') == 1:
-    with open('api_test.log', 'a') as file:
+if os.environ.get('LOG') == "1":
+    with open('logs/api_test.log', 'a') as file:
         file.write(output)

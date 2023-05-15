@@ -1,0 +1,173 @@
+
+2023-05-15 16:45:56.409269
+============================
+         SENTIMENTS 
+============================
+
+request done at "http://api:8000/v1/sentiment"
+| username="alice"
+| password="wonderland"
+| sentence="life is beautiful"
+
+expected result = 1
+actual result = 1
+
+==>  SUCCESS
+
+
+2023-05-15 16:45:56.485698
+============================
+         SENTIMENTS 
+============================
+
+request done at "http://api:8000/v2/sentiment"
+| username="alice"
+| password="wonderland"
+| sentence="life is beautiful"
+
+expected result = 1
+actual result = 1
+
+==>  SUCCESS
+
+
+2023-05-15 16:45:56.570554
+============================
+         SENTIMENTS 
+============================
+
+request done at "http://api:8000/v2/sentiment"
+| username="alice"
+| password="wonderland"
+| sentence="life sucks"
+
+expected result = 0
+actual result = 0
+
+==>  SUCCESS
+
+
+2023-05-15 16:45:56.607304
+============================
+          PERMISSION
+============================
+
+request done at "/permissions"
+| username="alice"
+| password="wonderland"
+
+expected result = 200
+actual result = 200
+
+==>  SUCCESS
+
+
+2023-05-15 16:45:56.611324
+============================
+       AUTHENTICATION
+============================
+
+request done at "http://api:8000/v1/sentiment"
+| username="alice"
+| password="wonderland"
+| sentence="life sucks"
+
+expected result = 200
+actual result = 200
+
+==>  SUCCESS
+
+
+2023-05-15 16:45:56.667054
+============================
+         SENTIMENTS 
+============================
+
+request done at "http://api:8000/v1/sentiment"
+| username="alice"
+| password="wonderland"
+| sentence="life sucks"
+
+expected result = 0
+actual result = 0
+
+==>  SUCCESS
+
+
+2023-05-15 16:45:56.693752
+============================
+          PERMISSION
+============================
+
+request done at "/permissions"
+| username="bob"
+| password="builder"
+
+expected result = 200
+actual result = 200
+
+==>  SUCCESS
+
+
+2023-05-15 16:45:56.696288
+============================
+       AUTHENTICATION
+============================
+
+request done at "http://api:8000/v2/sentiment"
+| username="alice"
+| password="wonderland"
+| sentence="life sucks"
+
+expected result = 200
+actual result = 200
+
+==>  SUCCESS
+
+
+2023-05-15 16:45:56.773088
+============================
+          PERMISSION
+============================
+
+request done at "/permissions"
+| username="clementine"
+| password="mandarine"
+
+expected result = 403
+actual result = 403
+
+==>  SUCCESS
+
+
+2023-05-15 16:45:56.775764
+============================
+       AUTHENTICATION
+============================
+
+request done at "http://api:8000/v1/sentiment"
+| username="bob"
+| password="builder"
+| sentence="life sucks"
+
+expected result = 200
+actual result = 200
+
+==>  SUCCESS
+
+
+2023-05-15 16:45:56.852286
+============================
+       AUTHENTICATION
+============================
+
+request done at "http://api:8000/v2/sentiment"
+| username="bob"
+| password="builder"
+| sentence="life sucks"
+
+expected result = 403
+actual result = 403
+
+==>  SUCCESS
+

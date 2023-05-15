@@ -1,6 +1,6 @@
 FROM python:latest
 WORKDIR /usr/src/app
-ENV LOG=1
-COPY ./auth.test.py . 
+COPY ./perm.test.py . 
+COPY ./perm.sh .
 RUN pip install --no-cache-dir requests
-ENTRYPOINT ["python", "auth.test.py"]
+ENTRYPOINT ["/bin/bash", "perm.sh"]
